@@ -1,4 +1,7 @@
 ﻿(() => {
+  const supabaseClient = window.supabase && window.SUPABASE_URL && window.SUPABASE_ANON_KEY
+    ? window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY)
+    : null;
   const STORAGE_KEYS = {
     state: 'stillpoint-state-v1',
     accounts: 'stillpoint-accounts-v1',
@@ -210,6 +213,7 @@
         'auth.eyebrow': 'Espaço privado',
         'auth.loginTitle': 'Entrar no My mindscape',
         'auth.subtitle': 'Guarde o seu progresso com segurança.',
+        'auth.signInRequired': 'Inicie sessão para usar esta funcionalidade.',
         'auth.email': 'E-mail',
         'auth.password': 'Palavra-passe',
         'auth.submit': 'Entrar',
@@ -218,6 +222,7 @@
         'auth.supabaseNote': 'A sua sessão fica guardada neste navegador.',
         'auth.signout': 'Sair',
         'auth.accountCreated': 'Conta criada com sucesso.',
+        'auth.checkEmail': 'Conta criada. Verifique o seu e-mail para confirmar a conta antes de entrar.',
         'auth.welcomeBack': 'Bem-vindo de volta.',
         'auth.completeForm': 'Preencha o formulário da conta.',
         'auth.enterDetails': 'Introduza os seus dados.',
@@ -239,13 +244,14 @@
         'report.title': 'O seu relatório pessoal',
         'report.note': 'Descarregue um resumo privado do seu bem-estar a partir dos seus check-ins guardados.',
         'report.button': 'Descarregar PDF',
+        'share.quote': 'Partilhar citação',
         'friends.title': 'Amigos',
         'friends.empty': 'Ainda não adicionou amigos.',
         'friendName': 'Nome do amigo',
         'friendContact': 'Detalhe de contacto',
         'friendAddPhoto': 'Adicionar foto',
         'friendAdd': 'Adicionar amigo',
-        'friendRemove': 'Remover selecionado',
+        'friendRemove': 'Remover amigos',
         'friendSave': 'Guardar perfil do amigo',
         'friendEdit': 'Editar amigo',
         'friendContactLabel': 'Detalhe de contacto',
@@ -288,6 +294,7 @@
         'Pode encontrar este momento, uma respiração de cada vez.',
         'O descanso faz parte do caminho.',
         'A sua atenção é preciosa.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Afirmação',
       affirmationConnector: 'de',
@@ -444,6 +451,7 @@
         'auth.eyebrow': 'Private space',
         'auth.loginTitle': 'Sign in to My mindscape',
         'auth.subtitle': 'Keep your progress safe.',
+        'auth.signInRequired': 'Sign in to use this feature.',
         'auth.email': 'Email',
         'auth.password': 'Password',
         'auth.submit': 'Sign in',
@@ -464,6 +472,7 @@
         'auth.signupSubmit': 'Create account',
         'auth.switchToLogin': 'I already have an account',
         'auth.accountCreated': 'Account created successfully.',
+        'auth.checkEmail': 'Account created. Check your email to confirm your account before signing in.',
         'auth.welcomeBack': 'Welcome back.',
         'task.empty': 'Your list is clear. What would feel good to finish?',
         'quick.empty': 'Your next step can be small.',
@@ -473,13 +482,14 @@
         'report.title': 'Your personal report',
         'report.note': 'Download a private wellness summary from your saved check-ins.',
         'report.button': 'Download PDF',
+        'share.quote': 'Share quote',
         'friends.title': 'Friends',
         'friends.empty': 'No friends added yet.',
         'friendName': "Friend's name",
         'friendContact': 'Contact detail',
         'friendAddPhoto': 'Add photo',
         'friendAdd': 'Add friend',
-        'friendRemove': 'Remove selected',
+        'friendRemove': 'Remove friends',
         'friendSave': 'Save friend profile',
         'friendEdit': 'Edit selected friend',
         'friendContactLabel': 'Contact detail',
@@ -522,6 +532,7 @@
         'You can meet this moment one breath at a time.',
         'Rest is part of the work, not a reward for finishing.',
         'Your attention is precious. Spend it with care.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Affirmation',
       affirmationConnector: 'of',
@@ -557,6 +568,7 @@
         'auth.completeForm': 'Completa el formulario de la cuenta.',
         'auth.enterDetails': 'Introduce tus datos.',
         'auth.accountCreated': 'Cuenta creada correctamente.',
+        'auth.checkEmail': 'Cuenta creada. Revisa tu correo electrónico para confirmar la cuenta antes de iniciar sesión.',
         'auth.welcomeBack': 'Bienvenido de nuevo.',
         'task.empty': 'Tu lista está limpia. ¿Qué te gustaría terminar?',
         'quick.empty': 'Tu próximo paso puede ser pequeño.',
@@ -572,7 +584,7 @@
         'friendContact': 'Detalle de contacto',
         'friendAddPhoto': 'Añadir foto',
         'friendAdd': 'Añadir amigo',
-        'friendRemove': 'Eliminar seleccionado',
+        'friendRemove': 'Eliminar amigos',
         'friendSave': 'Guardar perfil del amigo',
         'friendEdit': 'Editar amigo',
         'friendContactLabel': 'Detalle de contacto',
@@ -615,6 +627,7 @@
         'Puedes enfrentarte a este momento un respiro a la vez.',
         'El descanso forma parte del trabajo.',
         'Tu atención es valiosa. Cuídala.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Afirmación',
       affirmationConnector: 'de',
@@ -650,6 +663,7 @@
         'auth.completeForm': 'Veuillez compléter le formulaire du compte.',
         'auth.enterDetails': 'Veuillez renseigner vos informations.',
         'auth.accountCreated': 'Compte créé avec succès.',
+        'auth.checkEmail': 'Compte créé. Vérifiez votre e-mail pour confirmer votre compte avant de vous connecter.',
         'auth.welcomeBack': 'Bon retour.',
         'task.empty': 'Votre liste est vide. Qu’est-ce qui semble faisable ?',
         'quick.empty': 'La prochaine étape peut être petite.',
@@ -665,7 +679,7 @@
         'friendContact': 'Coordonnées',
         'friendAddPhoto': 'Ajouter une photo',
         'friendAdd': 'Ajouter un ami',
-        'friendRemove': 'Supprimer la sélection',
+        'friendRemove': 'Supprimer les amis',
         'friendSave': 'Enregistrer le profil',
         'friendEdit': 'Modifier l’ami',
         'friendContactLabel': 'Coordonnées',
@@ -708,6 +722,7 @@
         'Vous pouvez vivre ce moment une respiration à la fois.',
         'Le repos fait partie du travail.',
         'Votre attention est précieuse.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Affirmation',
       affirmationConnector: 'sur',
@@ -743,6 +758,7 @@
         'auth.completeForm': 'Bitte fülle das Kontenformular aus.',
         'auth.enterDetails': 'Bitte gib deine Daten ein.',
         'auth.accountCreated': 'Konto erfolgreich erstellt.',
+        'auth.checkEmail': 'Konto erstellt. Prüfe deine E-Mail, um dein Konto vor der Anmeldung zu bestätigen.',
         'auth.welcomeBack': 'Willkommen zurück.',
         'task.empty': 'Deine Liste ist leer. Was fühlt sich machbar an?',
         'quick.empty': 'Der nächste Schritt kann klein sein.',
@@ -758,7 +774,7 @@
         'friendContact': 'Kontaktdaten',
         'friendAddPhoto': 'Foto hinzufügen',
         'friendAdd': 'Freund hinzufügen',
-        'friendRemove': 'Ausgewählten entfernen',
+        'friendRemove': 'Freunde entfernen',
         'friendSave': 'Freund speichern',
         'friendEdit': 'Freund bearbeiten',
         'friendContactLabel': 'Kontaktdaten',
@@ -801,6 +817,7 @@
         'Du kannst diesen Moment eine Atemzug nach dem anderen meistern.',
         'Pause ist Teil der Arbeit.',
         'Deine Aufmerksamkeit ist wertvoll.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Bestätigung',
       affirmationConnector: 'von',
@@ -970,6 +987,7 @@
         'auth.signupSubmit': 'Tumbuluxa akhawunti',
         'auth.switchToLogin': 'Se ndzi na akhawunti',
         'auth.accountCreated': 'Akhawunti yi endliwa kahle.',
+        'auth.checkEmail': 'Akhawunti yi endliwile. Languta imeyili ya wena ku tiyisisa akhawunti u nga si nghena.',
         'auth.welcomeBack': 'Sawubona nakambe.',
         'task.empty': 'Nhlayo ya wena yi wume. Hi yini leyi tshembaka ku humelela?',
         'quick.empty': 'Xiphemu lexi landzelaka xi nga va xitsongo.',
@@ -985,7 +1003,7 @@
         'friendContact': 'Vutivi bya ku hlanganisa',
         'friendAddPhoto': 'Engetela xifaniso',
         'friendAdd': 'Engetela munghana',
-        'friendRemove': 'Susa loyi hlawuriweke',
+        'friendRemove': 'Susa vanghana',
         'friendSave': 'Hlayisa profaele',
         'friendEdit': 'Lunghekisa munghana',
         'friendContactLabel': 'Vutivi bya ku hlanganisa',
@@ -1028,6 +1046,7 @@
         'U nga kota ku kota ku endlela hi mpfumawulo wu un’we.',
         'Ku khuluka i xiphemu xa ntirho.',
         'Ntsundzuko wa wena i wa nkoka.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Xikombiso',
       affirmationConnector: 'xa',
@@ -1063,6 +1082,7 @@
         'auth.completeForm': 'Chonde lembani fomu ya akaunti.',
         'auth.enterDetails': 'Chonde lembani zambiri zanu.',
         'auth.accountCreated': 'Akaunti yapangidwa bwino.',
+        'auth.checkEmail': 'Akaunti yapangidwa. Yang’anani imelo yanu kuti mutsimikizire akaunti musanalowe.',
         'auth.welcomeBack': 'Takulandilani kubwerera.',
         'task.empty': 'Mndandanda wanu uli wopanda kanthu. N’chiyani chomwe chingatheke?',
         'quick.empty': 'Chinthu chotsatira chikhoza kukhala chaching’ono.',
@@ -1078,7 +1098,7 @@
         'friendContact': 'Zolumikizirana',
         'friendAddPhoto': 'Onjezani chithunzi',
         'friendAdd': 'Onjezani mnzanu',
-        'friendRemove': 'Chotsani osankhidwa',
+        'friendRemove': 'Chotsani anzanu',
         'friendSave': 'Sungani mbiri',
         'friendEdit': 'Sinthani mnzanu',
         'friendContactLabel': 'Zolumikizirana',
@@ -1121,6 +1141,7 @@
         'Mutha kuthana ndi nthawi iyi m’kupuma kamodzi.',
         'Kupumula ndi gawo la ntchito.',
         'Mawonedwe anu ndi ofunika.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Zikumbutso',
       affirmationConnector: 'pa',
@@ -1156,6 +1177,7 @@
         'auth.completeForm': 'Zadzisa fomu yeaccount.',
         'auth.enterDetails': 'Tapota isa ruzivo rwako.',
         'auth.accountCreated': 'Account yapedzwa zvinobudirira.',
+        'auth.checkEmail': 'Account yagadzirwa. Tarisa email yako kuti usimbise account usati wapinda.',
         'auth.welcomeBack': 'Kugashira kudzoka.',
         'task.empty': 'Runyorwa rwako rwuzere. Ndechipi chingaita?',
         'quick.empty': 'Chinotevera chingave chiri chidiki.',
@@ -1171,7 +1193,7 @@
         'friendContact': 'Contact details',
         'friendAddPhoto': 'Wedzera mufananidzo',
         'friendAdd': 'Wedzera shamwari',
-        'friendRemove': 'Bvisa yakasarudzwa',
+        'friendRemove': 'Bvisa shamwari',
         'friendSave': 'Chengetedza profile',
         'friendEdit': 'Gadzirisa shamwari',
         'friendContactLabel': 'Contact details',
@@ -1214,6 +1236,7 @@
         'Unogona kusangana nenguva iyi kufema rimwe nerimwe.',
         'Kupumha chikamu chebasa.',
         'Attention yako yakanaka.'
+        , 'Huma ka swona'
       ],
       affirmationPrefix: 'Chikurudzira',
       affirmationConnector: 'ra',
@@ -1221,9 +1244,56 @@
     }
   };
 
-  const defaultState = { entries: [], tasks: [], friends: [], checkInDates: [], messages: {}, selectedMood: 'calm', selectedFriend: null };
+  translations.tr = {
+    ...translations.en,
+    locale: 'tr-TR',
+    title: 'My mindscape',
+    text: {
+      ...translations.en.text,
+      'brand.tagline': 'daha yumuşak alanınız',
+      'language.label': 'Dil',
+      'auth.login': 'Giriş yap',
+      'auth.loginTitle': 'My mindscape’e giriş yap',
+      'auth.subtitle': 'İlerlemenizi güvenle saklayın.',
+      'auth.submit': 'Giriş yap',
+      'auth.create': 'Hesap oluştur',
+      'auth.signupTitle': 'My mindscape hesabı oluştur',
+      'auth.signupSubmit': 'Hesap oluştur',
+      'auth.switchToLogin': 'Zaten hesabım var',
+      'auth.email': 'E-posta',
+      'auth.password': 'Şifre',
+      'auth.firstName': 'Ad',
+      'auth.lastName': 'Soyadı',
+      'auth.reason': 'Buraya gelme nedeniniz nedir?',
+      'auth.accountCreated': 'Hesap başarıyla oluşturuldu.',
+      'auth.checkEmail': 'Hesap oluşturuldu. Giriş yapmadan önce onaylamak için e-postanızı kontrol edin.',
+      'auth.error.exist': 'Bu e-posta zaten kullanılıyor. Giriş yapmayı deneyin.',
+      'auth.signInRequired': 'Bu özelliği kullanmak için giriş yapın.',
+      'share.quote': 'Sözü paylaş'
+    },
+    moods: ['Neşeli', 'Sakin', 'Endişeli', 'Kötü', 'Bunalmış'],
+    affirmations: [
+      'Yeniden ve nazikçe başlayabilirsin.',
+      'Küçük adımlar da ilerlemedir.',
+      'Bu anla tek bir nefesle buluşabilirsin.',
+      'Dinlenmek yolculuğun bir parçasıdır.',
+      'Dikkatin değerlidir.',
+      'Huma ka swona'
+    ],
+    affirmationPrefix: 'Olumlama',
+    affirmationConnector: '/',
+    pageTitle: 'My mindscape'
+  };
+
+  const defaultState = { entries: [], tasks: [], friends: [], checkInDates: [], messages: {}, selectedMood: 'calm', selectedFriends: [] };
   let currentUser = JSON.parse(localStorage.getItem(STORAGE_KEYS.session) || 'null');
+  let authMode = 'login';
+  let emailCheckRequest = 0;
+  let affirmationIndex = null;
   let state = { ...defaultState, ...readJSON(STORAGE_KEYS.state, {}) };
+  state.selectedFriends = Array.isArray(state.selectedFriends) && state.selectedFriends.length
+    ? state.selectedFriends
+    : (state.selectedFriend ? [state.selectedFriend] : []);
 
   function readJSON(key, fallback) {
     try {
@@ -1237,6 +1307,48 @@
 
   function persistState() {
     localStorage.setItem(STORAGE_KEYS.state, JSON.stringify(state));
+    syncStateToSupabase();
+  }
+
+  async function syncStateToSupabase() {
+    if (!supabaseClient || !currentUser?.id) return;
+    const remoteState = {
+      ...state,
+      friends: state.friends.map(({ avatar, ...friend }) => ({ ...friend, avatar: '', avatarPath: friend.avatarPath || '' }))
+    };
+    const { error } = await supabaseClient.from('app_state').upsert({
+      user_id: currentUser.id,
+      state: remoteState,
+      updated_at: new Date().toISOString()
+    });
+    if (error) console.error('Could not sync app state:', error.message);
+  }
+
+  async function loadStateFromSupabase() {
+    if (!supabaseClient || !currentUser?.id) return;
+    const { data, error } = await supabaseClient
+      .from('app_state')
+      .select('state')
+      .eq('user_id', currentUser.id)
+      .maybeSingle();
+    if (error) {
+      console.error('Could not load app state:', error.message);
+      return;
+    }
+    if (data?.state) state = { ...defaultState, ...data.state };
+    await hydrateFriendAvatars();
+    renderApplication();
+  }
+
+  async function hydrateFriendAvatars() {
+    if (!supabaseClient || !currentUser?.id) return;
+    await Promise.all(state.friends.map(async (friend) => {
+      if (!friend.avatarPath) return;
+      const { data, error } = await supabaseClient.storage
+        .from('friend-avatars')
+        .createSignedUrl(friend.avatarPath, 60 * 60);
+      if (!error && data?.signedUrl) friend.avatar = data.signedUrl;
+    }));
   }
 
   function getLanguage() {
@@ -1326,7 +1438,7 @@
         : new Intl.DateTimeFormat(language.locale, { weekday: 'long', month: 'long', day: 'numeric' }).format(today);
     }
 
-    const affirmationIndex = new Date().getDate() % language.affirmations.length;
+    if (affirmationIndex === null) affirmationIndex = new Date().getDate() % language.affirmations.length;
     const affirmation = document.getElementById('affirmation');
     if (affirmation) affirmation.textContent = language.affirmations[affirmationIndex];
 
@@ -1334,6 +1446,8 @@
     if (affirmationCount) {
       affirmationCount.textContent = `${language.affirmationPrefix} ${affirmationIndex + 1} ${language.affirmationConnector} ${language.affirmations.length}`;
     }
+    const shareButton = document.getElementById('share-affirmation');
+    if (shareButton) shareButton.textContent = `↗ ${t('share.quote', 'Share quote')}`;
 
     document.querySelectorAll('[data-i18n]').forEach((node) => {
       const key = node.dataset.i18n;
@@ -1703,6 +1817,20 @@
     });
   }
 
+  function getFriendContactUrl(friend) {
+    const contact = String(friend.contact || '').trim();
+    if (!contact) return '';
+    if (friend.contactType === 'WhatsApp') {
+      const phone = contact.replace(/[^\d]/g, '');
+      return phone ? `https://wa.me/${phone}` : '';
+    }
+    if (friend.contactType === 'Instagram') {
+      if (/^https?:\/\//i.test(contact)) return contact;
+      return `https://www.instagram.com/${encodeURIComponent(contact.replace(/^@/, ''))}`;
+    }
+    return `tel:${contact.replace(/[^\d+*#;,]/g, '')}`;
+  }
+
   function renderFriends() {
     const list = document.getElementById('friend-list');
     if (!list) return;
@@ -1712,25 +1840,41 @@
       return;
     }
 
-    list.innerHTML = state.friends.map((friend) => `
-      <button data-friend-id="${escapeHtml(friend.id)}" class="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold transition ${state.selectedFriend === friend.id ? 'bg-mint text-sage' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'}" type="button">
+    list.innerHTML = state.friends.map((friend) => {
+      const contactUrl = getFriendContactUrl(friend);
+      return `
+      <div data-friend-id="${escapeHtml(friend.id)}" class="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-semibold transition ${state.selectedFriends.includes(friend.id) ? 'bg-mint text-sage' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'}" role="button" tabindex="0">
         <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-lavender text-indigo-700 ${friend.avatar ? 'overflow-hidden' : ''}">
           ${friend.avatar ? `<img src="${friend.avatar}" alt="" class="h-full w-full rounded-full object-cover">` : escapeHtml(friend.name.charAt(0).toUpperCase())}
         </span>
         <span class="min-w-0 flex-1 truncate">
           <strong class="block truncate">${escapeHtml(friend.name)}</strong>
-          <small class="block truncate text-[10px] font-normal text-slate-400">${friend.contact ? `${friend.contactType}: ${friend.contact}` : ''}</small>
+          ${contactUrl ? `<a data-friend-contact href="${escapeHtml(contactUrl)}" target="_blank" rel="noopener noreferrer" class="block truncate text-[10px] font-normal text-sage underline-offset-2 hover:underline">${escapeHtml(`${friend.contactType}: ${friend.contact}`)}</a>` : ''}
         </span>
-      </button>
-    `).join('');
+      </div>
+    `;
+    }).join('');
 
-    list.querySelectorAll('[data-friend-id]').forEach((button) => {
-      button.addEventListener('click', () => {
-        state.selectedFriend = button.dataset.friendId;
+    list.querySelectorAll('[data-friend-id]').forEach((card) => {
+      const selectFriend = () => {
+        const friendId = card.dataset.friendId;
+        state.selectedFriends = state.selectedFriends.includes(friendId)
+          ? state.selectedFriends.filter((id) => id !== friendId)
+          : [...state.selectedFriends, friendId];
         persistState();
         renderFriends();
         updateRemoveButton();
+      };
+      card.addEventListener('click', selectFriend);
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectFriend();
+        }
       });
+    });
+    list.querySelectorAll('[data-friend-contact]').forEach((link) => {
+      link.addEventListener('click', (event) => event.stopPropagation());
     });
 
     updateRemoveButton();
@@ -1738,7 +1882,19 @@
 
   function updateRemoveButton() {
     const button = document.getElementById('remove-friend');
-    if (button) button.disabled = !state.selectedFriend;
+    if (button) button.disabled = !state.selectedFriends.length;
+  }
+
+  function updateContactInput() {
+    const type = document.getElementById('friend-contact-type')?.value;
+    const input = document.getElementById('friend-contact');
+    if (!input) return;
+    const placeholders = {
+      WhatsApp: 'Phone number with country code',
+      Instagram: 'Instagram username or link',
+      Phone: 'Phone number'
+    };
+    input.placeholder = placeholders[type] || 'Contact detail';
   }
 
   function renderStreak() {
@@ -1800,7 +1956,7 @@
     showToast(t('journal.saved'));
   }
 
-  function saveFriend() {
+  async function saveFriend() {
     const input = document.getElementById('friend-name');
     const contact = document.getElementById('friend-contact');
     if (!input || !contact) return;
@@ -1813,14 +1969,30 @@
     }
 
     const id = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    let avatarPath = '';
+    if (pendingAvatar && supabaseClient && currentUser?.id) {
+      const match = pendingAvatar.match(/^data:(image\/[a-z0-9.+-]+);base64,(.+)$/i);
+      if (match) {
+        const extension = match[1].split('/')[1].replace('jpeg', 'jpg').replace(/[^a-z0-9]/gi, '');
+        const binary = atob(match[2]);
+        const bytes = Uint8Array.from(binary, (character) => character.charCodeAt(0));
+        avatarPath = `${currentUser.id}/${id}.${extension}`;
+        const { error } = await supabaseClient.storage.from('friend-avatars').upload(avatarPath, new Blob([bytes], { type: match[1] }), { upsert: false, contentType: match[1] });
+        if (error) {
+          showToast(t('auth.error.general'));
+          return;
+        }
+      }
+    }
     state.friends.push({
       id,
       name,
       contactType: document.getElementById('friend-contact-type')?.value || 'WhatsApp',
       contact: contactValue,
-      avatar: pendingAvatar || ''
+      avatar: pendingAvatar || '',
+      avatarPath
     });
-    state.selectedFriend = id;
+    state.selectedFriends = [...state.selectedFriends, id];
     state.messages[id] = [];
     persistState();
     renderFriends();
@@ -1832,15 +2004,16 @@
   }
 
   function removeSelectedFriend() {
-    if (!state.selectedFriend) return;
-    const chosen = state.friends.find((friend) => friend.id === state.selectedFriend);
-    state.friends = state.friends.filter((friend) => friend.id !== state.selectedFriend);
-    delete state.messages[state.selectedFriend];
-    state.selectedFriend = null;
+    if (!state.selectedFriends.length) return;
+    const selectedIds = new Set(state.selectedFriends);
+    const removedCount = state.friends.filter((friend) => selectedIds.has(friend.id)).length;
+    state.friends = state.friends.filter((friend) => !selectedIds.has(friend.id));
+    selectedIds.forEach((id) => delete state.messages[id]);
+    state.selectedFriends = [];
     persistState();
     renderFriends();
     updateRemoveButton();
-    showToast(t('friendRemoved', `${chosen?.name || 'Friend'} removed.`));
+    showToast(`${removedCount} ${t('friends.title', 'friends')} removed.`);
   }
 
   function downloadReport() {
@@ -1951,6 +2124,9 @@
   function openAuth() {
     const modal = document.getElementById('auth-modal');
     if (!modal) return;
+    authMode = 'login';
+    resetAuthForm();
+    refreshAuthModeText();
     modal.classList.remove('hidden');
     modal.classList.add('flex');
   }
@@ -1962,7 +2138,8 @@
     modal.classList.remove('flex');
   }
 
-  function clearLocalData() {
+  async function clearLocalData() {
+    if (supabaseClient) await supabaseClient.auth.signOut();
     localStorage.removeItem(STORAGE_KEYS.state);
     localStorage.removeItem(STORAGE_KEYS.session);
     localStorage.removeItem(STORAGE_KEYS.accounts);
@@ -1973,7 +2150,8 @@
     showToast(t('auth.dataCleared'));
   }
 
-  function signOutOnly() {
+  async function signOutOnly() {
+    if (supabaseClient) await supabaseClient.auth.signOut();
     currentUser = null;
     localStorage.removeItem(STORAGE_KEYS.session);
     updateAuthButton();
@@ -1992,11 +2170,12 @@
       </div>
     `;
     document.body.appendChild(overlay);
-    overlay.querySelector('[data-logout-action="keep"]')?.addEventListener('click', () => {
-      signOutOnly();
+    overlay.querySelector('[data-logout-action="keep"]')?.addEventListener('click', async () => {
+      await signOutOnly();
       overlay.remove();
     });
-    overlay.querySelector('[data-logout-action="clear"]')?.addEventListener('click', () => {
+    overlay.querySelector('[data-logout-action="clear"]')?.addEventListener('click', async () => {
+      await signOutOnly();
       clearLocalData();
       overlay.remove();
     });
@@ -2007,8 +2186,7 @@
   }
 
   function refreshAuthModeText() {
-    const loginMode = document.getElementById('auth-login-mode')?.value === 'login';
-    const mode = loginMode ? 'login' : 'signup';
+    const mode = authMode;
     const title = document.getElementById('auth-title');
     const submit = document.getElementById('auth-submit');
     const switchButton = document.getElementById('auth-switch');
@@ -2022,6 +2200,44 @@
     if (title) title.textContent = mode === 'login' ? t('auth.loginTitle') : t('auth.signupTitle');
     if (submit) submit.textContent = mode === 'login' ? t('auth.submit') : t('auth.signupSubmit');
     if (switchButton) switchButton.textContent = mode === 'login' ? t('auth.create') : t('auth.switchToLogin');
+    const emailStatus = document.getElementById('auth-email-status');
+    if (emailStatus && mode === 'login') emailStatus.textContent = '';
+  }
+
+  function resetAuthForm() {
+    const form = document.getElementById('auth-form');
+    form?.reset();
+    form?.querySelectorAll('input, textarea, select').forEach((field) => {
+      if (field.id !== 'auth-login-mode') field.value = '';
+    });
+    const email = document.getElementById('auth-email');
+    const password = document.getElementById('auth-password');
+    if (email) email.setAttribute('autocomplete', 'off');
+    if (password) password.setAttribute('autocomplete', 'new-password');
+    const emailStatus = document.getElementById('auth-email-status');
+    if (emailStatus) emailStatus.textContent = '';
+  }
+
+  function bindEmailAvailability() {
+    const input = document.getElementById('auth-email');
+    if (!input) return;
+    const status = document.createElement('p');
+    status.id = 'auth-email-status';
+    status.className = 'mt-1 text-xs font-semibold text-rose-600';
+    input.closest('label')?.append(status);
+    let timer = null;
+    input.addEventListener('input', () => {
+      clearTimeout(timer);
+      status.textContent = '';
+      if (authMode !== 'signup' || !supabaseClient || !input.validity.valid) return;
+      const email = input.value.trim().toLowerCase();
+      timer = setTimeout(async () => {
+        const request = ++emailCheckRequest;
+        const { data, error } = await supabaseClient.rpc('email_is_taken', { email_to_check: email });
+        if (request !== emailCheckRequest || error) return;
+        if (data === true && authMode === 'signup') status.textContent = t('auth.error.exist');
+      }, 400);
+    });
   }
 
   function renderAuthReasonOptions() {
@@ -2073,58 +2289,75 @@
     });
   }
 
-  function handleSaveAccount(event) {
+  async function handleSaveAccount(event) {
     event.preventDefault();
     const email = document.getElementById('auth-email').value.trim().toLowerCase();
     const password = document.getElementById('auth-password').value;
     const firstName = document.getElementById('auth-first-name')?.value.trim() || '';
     const lastName = document.getElementById('auth-last-name')?.value.trim() || '';
     const reason = document.getElementById('auth-reason')?.value || '';
-    const mode = document.getElementById('auth-login-mode')?.value || 'login';
+    const mode = authMode;
 
     if (!email || !password || (mode === 'signup' && !firstName && !lastName)) {
       showToast(mode === 'signup' ? t('auth.completeForm') : t('auth.enterDetails'));
       return;
     }
 
-    const accounts = readJSON(STORAGE_KEYS.accounts, []);
+    if (!supabaseClient) {
+      showToast(t('auth.error.general'));
+      return;
+    }
 
-    if (mode === 'login') {
-      const user = accounts.find((entry) => entry.email === email && entry.password === password);
-      if (!user) {
-        showToast(t('auth.error.invalid'));
+    let result = mode === 'login'
+      ? await supabaseClient.auth.signInWithPassword({ email, password })
+      : await supabaseClient.auth.signUp({
+        email,
+        password,
+        options: { data: { first_name: firstName, last_name: lastName, onboarding_reason: reason } }
+      });
+    if (result.error) {
+      const duplicateEmail = mode === 'signup'
+        && (result.error.status === 422 || /already|registered|exists/i.test(result.error.message || ''));
+      showToast(mode === 'login' ? t('auth.error.invalid') : (duplicateEmail ? t('auth.error.exist') : t('auth.error.general')));
+      return;
+    }
+
+    if (mode === 'signup' && !result.data.session) {
+      result = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (result.error) {
+        showToast(/confirm|verif/i.test(result.error.message || '') ? t('auth.checkEmail') : t('auth.error.general'));
         return;
       }
-      currentUser = { email: user.email, firstName: user.firstName || '', lastName: user.lastName || '', reason: user.reason || '' };
+    }
+
+    const user = result.data.user;
+    if (!user) {
+      showToast(t('auth.error.general'));
+      return;
+    }
+    if (mode === 'signup' && result.data.session) {
+      const { error: profileError } = await supabaseClient.from('profiles').upsert({
+        id: user.id,
+        first_name: firstName,
+        last_name: lastName,
+        onboarding_reason: reason,
+        display_name: [firstName, lastName].filter(Boolean).join(' ') || email.split('@')[0]
+      });
+      if (profileError) {
+        showToast(t('auth.error.general'));
+        return;
+      }
+    }
+
+    if (result.data.session) {
+      currentUser = { id: user.id, email: user.email, firstName, lastName, reason };
       localStorage.setItem(STORAGE_KEYS.session, JSON.stringify(currentUser));
       updateAuthButton();
       closeAuth();
-      showToast(t('auth.welcomeBack'));
-      return;
     }
-
-    const exists = accounts.some((entry) => entry.email === email);
-    if (exists) {
-      showToast(t('auth.error.exist'));
-      return;
-    }
-
-    const newUser = {
-      id: crypto.randomUUID(),
-      email,
-      password,
-      firstName,
-      lastName,
-      reason,
-      createdAt: new Date().toISOString()
-    };
-    accounts.push(newUser);
-    localStorage.setItem(STORAGE_KEYS.accounts, JSON.stringify(accounts));
-    currentUser = { email, firstName, lastName, reason };
-    localStorage.setItem(STORAGE_KEYS.session, JSON.stringify(currentUser));
-    updateAuthButton();
-    closeAuth();
-    showToast(t('auth.accountCreated'));
+    showToast(mode === 'login'
+      ? t('auth.welcomeBack')
+      : (result.data.session ? t('auth.accountCreated') : t('auth.checkEmail')));
   }
 
   function bindAuth() {
@@ -2133,14 +2366,11 @@
     const switchButton = document.getElementById('auth-switch');
     const closeButton = document.getElementById('auth-close');
     const form = document.getElementById('auth-form');
-    const modeToggle = document.getElementById('auth-login-mode');
-
-    document.querySelector('label[for="auth-login-mode"]')?.remove();
-    if (modeToggle) {
-      modeToggle.classList.add('sr-only');
-      modeToggle.hidden = true;
-      modeToggle.setAttribute('aria-hidden', 'true');
-    }
+    document.getElementById('auth-login-mode')?.closest('.block')?.remove();
+    document.querySelector('[data-i18n="auth.supabaseTitle"]')?.closest('div')?.remove();
+    bindPasswordToggle();
+    setBrainLogo();
+    bindEmailAvailability();
 
     if (loginButton) {
       loginButton.addEventListener('click', () => {
@@ -2154,28 +2384,146 @@
 
     if (switchButton) {
       switchButton.addEventListener('click', () => {
-        const nextMode = modeToggle?.value === 'login' ? 'signup' : 'login';
-        if (modeToggle) modeToggle.value = nextMode;
+        authMode = authMode === 'login' ? 'signup' : 'login';
+        resetAuthForm();
         refreshAuthModeText();
       });
     }
 
     if (closeButton) closeButton.addEventListener('click', closeAuth);
     if (form) form.addEventListener('submit', handleSaveAccount);
-    if (modeToggle) {
-      modeToggle.addEventListener('change', refreshAuthModeText);
-      modeToggle.value = 'login';
-      refreshAuthModeText();
-    }
+    refreshAuthModeText();
 
     if (modal) modal.addEventListener('click', (event) => {
       if (event.target === modal) closeAuth();
     });
   }
 
-  function init() {
+  function bindAuthGate() {
+    const isAllowedWhenSignedOut = (target) => target.closest('#language-picker, #login-button, #auth-modal');
+    document.addEventListener('click', (event) => {
+      if (currentUser?.email || isAllowedWhenSignedOut(event.target)) return;
+      if (!event.target.closest('main, .desktop-sidebar, .mobile-tabbar, #reset-session, #signout-button')) return;
+      event.preventDefault();
+      event.stopPropagation();
+      showToast(t('auth.signInRequired'));
+      openAuth();
+    }, true);
+  }
+
+  function bindAffirmationSwitcher() {
+    const card = document.getElementById('affirmation')?.closest('article');
+    if (!card || card.dataset.affirmationBound) return;
+    card.dataset.affirmationBound = 'true';
+    card.classList.add('cursor-pointer');
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    const shareButton = document.createElement('button');
+    shareButton.id = 'share-affirmation';
+    shareButton.type = 'button';
+    shareButton.className = 'absolute bottom-7 right-7 rounded-full bg-white/15 px-3 py-2 text-xs font-bold text-white transition hover:bg-white/25 focus:outline-none focus:ring-2 focus:ring-white/60';
+    shareButton.textContent = `↗ ${t('share.quote', 'Share quote')}`;
+    card.appendChild(shareButton);
+    shareButton.addEventListener('click', shareAffirmation);
+    const nextAffirmation = () => {
+      const language = translations[getLanguage()] || translations.en;
+      affirmationIndex = (affirmationIndex + 1) % language.affirmations.length;
+      renderApplication();
+    };
+    card.addEventListener('click', nextAffirmation);
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        nextAffirmation();
+      }
+    });
+  }
+
+  async function shareAffirmation(event) {
+    event.stopPropagation();
+    const language = translations[getLanguage()] || translations.en;
+    const quote = language.affirmations[affirmationIndex];
+    const canvas = document.createElement('canvas');
+    canvas.width = 1200;
+    canvas.height = 630;
+    const context = canvas.getContext('2d');
+    context.fillStyle = '#54735e';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = 'rgba(255,255,255,.12)';
+    context.beginPath();
+    context.arc(1020, 90, 180, 0, Math.PI * 2);
+    context.fill();
+    context.fillStyle = '#dfeee2';
+    context.font = '600 28px DM Sans, sans-serif';
+    context.fillText('MY MINDSCAPE', 80, 90);
+    context.fillStyle = '#ffffff';
+    context.font = '600 54px Fraunces, Georgia, serif';
+    const words = quote.split(' ');
+    const lines = [];
+    let line = '';
+    words.forEach((word) => {
+      const candidate = line ? `${line} ${word}` : word;
+      if (context.measureText(candidate).width > 980 && line) {
+        lines.push(line);
+        line = word;
+      } else line = candidate;
+    });
+    if (line) lines.push(line);
+    lines.forEach((text, index) => context.fillText(text, 80, 275 + index * 72));
+    context.fillStyle = '#dfeee2';
+    context.font = '500 24px DM Sans, sans-serif';
+    context.fillText('A softer space for your mind', 80, 540);
+
+    const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
+    if (!blob) return;
+    const file = new File([blob], 'my-mindscape-quote.png', { type: 'image/png' });
+    if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+      await navigator.share({ files: [file], title: 'My mindscape', text: quote }).catch(() => {});
+      return;
+    }
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = file.name;
+    link.click();
+    URL.revokeObjectURL(link.href);
+    showToast(t('share.quote', 'Quote image downloaded.'));
+  }
+
+  function bindPasswordToggle() {
+    const input = document.getElementById('auth-password');
+    if (!input || document.getElementById('auth-password-toggle')) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'relative';
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+    input.classList.add('pr-12');
+    const button = document.createElement('button');
+    button.id = 'auth-password-toggle';
+    button.type = 'button';
+    button.className = 'absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1 text-slate-400 transition hover:text-sage focus:outline-none focus:ring-2 focus:ring-emerald-100';
+    button.setAttribute('aria-label', 'Show password');
+    button.innerHTML = '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"></path><circle cx="12" cy="12" r="2.5"></circle></svg>';
+    wrapper.appendChild(button);
+    button.addEventListener('click', () => {
+      const visible = input.type === 'text';
+      input.type = visible ? 'password' : 'text';
+      button.setAttribute('aria-label', visible ? 'Show password' : 'Hide password');
+    });
+  }
+
+  function setBrainLogo() {
+    const logo = document.querySelector('.desktop-sidebar > div:first-child > div:first-child > span');
+    if (!logo) return;
+    const tile = logo.parentElement;
+    tile?.classList.remove('bg-sage', 'text-white');
+    tile?.classList.add('bg-mint', 'text-sage');
+    logo.innerHTML = '<svg class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" aria-label="Brain"><path d="M10.8 3.3A4.2 4.2 0 0 0 6 6.9a3.8 3.8 0 0 0-2.5 3.6c0 1.2.5 2.3 1.3 3.1A3.9 3.9 0 0 0 8.5 18a4.1 4.1 0 0 0 3.5 2.1V3.8c-.4-.2-.8-.4-1.2-.5Z"></path><path d="M13.2 3.3A4.2 4.2 0 0 1 18 6.9a3.8 3.8 0 0 1 2.5 3.6c0 1.2-.5 2.3-1.3 3.1a3.9 3.9 0 0 1-3.7 4.4 4.1 4.1 0 0 1-3.5 2.1V3.8c.4-.2.8-.4 1.2-.5Z"></path><path d="M9 7.5h2v1H9zM13 7.5h2v1h-2zM8 11h3v1H8zM13 11h3v1h-3zM9 14.5h2v1H9zM13 14.5h2v1h-2z" fill="#dfeee2"></path></svg>';
+  }
+
+  async function init() {
     const languageSelect = document.getElementById('language-select');
     if (languageSelect) {
+      if (!languageSelect.querySelector('option[value="tr"]')) languageSelect.add(new Option('Türkçe', 'tr'));
       languageSelect.value = getLanguage();
       languageSelect.addEventListener('change', (event) => setLanguage(event.target.value));
     }
@@ -2252,19 +2600,41 @@
     document.getElementById('download-report')?.addEventListener('click', downloadReport);
     document.getElementById('add-friend')?.addEventListener('click', saveFriend);
     document.getElementById('remove-friend')?.addEventListener('click', removeSelectedFriend);
+    document.getElementById('friend-contact-type')?.addEventListener('change', updateContactInput);
+    updateContactInput();
     document.getElementById('reset-session')?.addEventListener('click', clearLocalData);
 
     bindFileInput();
     createSignoutButtonIfNeeded();
     bindAuth();
+    bindAuthGate();
+    bindAffirmationSwitcher();
     renderAuthReasonOptions();
 
-    const storedSession = JSON.parse(localStorage.getItem(STORAGE_KEYS.session) || 'null');
-    if (storedSession?.email) {
-      currentUser = storedSession;
+    if (supabaseClient) {
+      const { data } = await supabaseClient.auth.getSession();
+      if (data.session?.user) {
+        currentUser = { id: data.session.user.id, email: data.session.user.email };
+        localStorage.setItem(STORAGE_KEYS.session, JSON.stringify(currentUser));
+      } else {
+        currentUser = null;
+        localStorage.removeItem(STORAGE_KEYS.session);
+      }
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
+        currentUser = session?.user ? { id: session.user.id, email: session.user.email } : null;
+        if (currentUser) localStorage.setItem(STORAGE_KEYS.session, JSON.stringify(currentUser));
+        else localStorage.removeItem(STORAGE_KEYS.session);
+        updateAuthButton();
+        if (currentUser) loadStateFromSupabase();
+      });
+    } else {
+      const storedSession = JSON.parse(localStorage.getItem(STORAGE_KEYS.session) || 'null');
+      if (storedSession?.email) currentUser = storedSession;
     }
+    await loadStateFromSupabase();
     updateAuthButton();
     renderApplication();
+    if (!currentUser?.email) openAuth();
   }
 
   function escapeHtml(value) {
