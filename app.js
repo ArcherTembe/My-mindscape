@@ -294,7 +294,7 @@
         'Pode encontrar este momento, uma respiração de cada vez.',
         'O descanso faz parte do caminho.',
         'A sua atenção é preciosa.'
-        , 'Huma ka swona'
+        , 'Saia disso.'
       ],
       affirmationPrefix: 'Afirmação',
       affirmationConnector: 'de',
@@ -532,7 +532,7 @@
         'You can meet this moment one breath at a time.',
         'Rest is part of the work, not a reward for finishing.',
         'Your attention is precious. Spend it with care.'
-        , 'Huma ka swona'
+        , 'Get out of it.'
       ],
       affirmationPrefix: 'Affirmation',
       affirmationConnector: 'of',
@@ -627,7 +627,7 @@
         'Puedes enfrentarte a este momento un respiro a la vez.',
         'El descanso forma parte del trabajo.',
         'Tu atención es valiosa. Cuídala.'
-        , 'Huma ka swona'
+        , 'Sal de ahí.'
       ],
       affirmationPrefix: 'Afirmación',
       affirmationConnector: 'de',
@@ -722,7 +722,7 @@
         'Vous pouvez vivre ce moment une respiration à la fois.',
         'Le repos fait partie du travail.',
         'Votre attention est précieuse.'
-        , 'Huma ka swona'
+        , 'Sors de là.'
       ],
       affirmationPrefix: 'Affirmation',
       affirmationConnector: 'sur',
@@ -817,7 +817,7 @@
         'Du kannst diesen Moment eine Atemzug nach dem anderen meistern.',
         'Pause ist Teil der Arbeit.',
         'Deine Aufmerksamkeit ist wertvoll.'
-        , 'Huma ka swona'
+        , 'Komm da raus.'
       ],
       affirmationPrefix: 'Bestätigung',
       affirmationConnector: 'von',
@@ -1141,7 +1141,7 @@
         'Mutha kuthana ndi nthawi iyi m’kupuma kamodzi.',
         'Kupumula ndi gawo la ntchito.',
         'Mawonedwe anu ndi ofunika.'
-        , 'Huma ka swona'
+        , 'Choka mmo.'
       ],
       affirmationPrefix: 'Zikumbutso',
       affirmationConnector: 'pa',
@@ -1236,7 +1236,7 @@
         'Unogona kusangana nenguva iyi kufema rimwe nerimwe.',
         'Kupumha chikamu chebasa.',
         'Attention yako yakanaka.'
-        , 'Huma ka swona'
+        , 'Buda mazviri.'
       ],
       affirmationPrefix: 'Chikurudzira',
       affirmationConnector: 'ra',
@@ -1278,7 +1278,7 @@
       'Bu anla tek bir nefesle buluşabilirsin.',
       'Dinlenmek yolculuğun bir parçasıdır.',
       'Dikkatin değerlidir.',
-      'Huma ka swona'
+      'Bundan çık.'
     ],
     affirmationPrefix: 'Olumlama',
     affirmationConnector: '/',
@@ -2477,8 +2477,10 @@
     const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
     if (!blob) return;
     const file = new File([blob], 'my-mindscape-quote.png', { type: 'image/png' });
+    const appUrl = 'https://mymindescape.vercel.app';
+    const shareText = `${quote}\n\n${appUrl}`;
     if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
-      await navigator.share({ files: [file], title: 'My mindscape', text: quote }).catch(() => {});
+      await navigator.share({ files: [file], title: 'My mindscape', text: shareText }).catch(() => {});
       return;
     }
     const link = document.createElement('a');
