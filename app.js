@@ -28,6 +28,17 @@
     sn: ['Kuchengeta manzwiro angu', 'Kugadzirisa kufunganya kana kushushikana', 'Kuvandudza kutarisa nekudzidza', 'Kuvaka tsika dzine hutano', 'Kuva nenzvimbo yekufungisisa']
   };
 
+  const timeGreetingTranslations = {
+    pt: { morning: 'Bom dia, amigo.', afternoon: 'Boa tarde, amigo.', evening: 'Boa noite, amigo.' },
+    en: { morning: 'Good morning, friend.', afternoon: 'Good afternoon, friend.', evening: 'Good evening, friend.' },
+    es: { morning: 'Buenos días, amigo.', afternoon: 'Buenas tardes, amigo.', evening: 'Buenas noches, amigo.' },
+    fr: { morning: 'Bonjour, ami.', afternoon: 'Bon après-midi, ami.', evening: 'Bonsoir, ami.' },
+    de: { morning: 'Guten Morgen, Freund.', afternoon: 'Guten Tag, Freund.', evening: 'Guten Abend, Freund.' },
+    ts: { morning: 'Avuxeni, munghana.', afternoon: 'Ndzenghunghu, munghana.', evening: 'Madyambu, munghana.' },
+    mkh: { morning: 'Mwau, mnzanga.', afternoon: 'Mwaswera bwanji, mnzanga.', evening: 'Madzulo abwino, mnzanga.' },
+    sn: { morning: 'Mhoroi shamwari.', afternoon: 'Masikati akanaka, shamwari.', evening: 'Manheru akanaka, shamwari.' }
+  };
+
   const reportTranslations = {
     pt: { header: 'Relatório pessoal de bem-estar', generated: 'Gerado', checkins: 'Check-ins', tasks: 'Tarefas concluídas', friends: 'Amigos', moodSummary: 'Resumo do humor', recent: 'Reflexões recentes', quiet: 'Reflexão tranquila', next: 'Próximo passo gentil: faça uma pequena ação e permita-se descansar.' },
     en: { header: 'Personal Wellness Report', generated: 'Generated', checkins: 'Check-ins', tasks: 'Tasks completed', friends: 'Friends', moodSummary: 'Mood summary', recent: 'Recent reflections', quiet: 'Quiet reflection', next: 'Gentle next step: take one small action and give yourself permission to rest.' },
@@ -1356,6 +1367,12 @@
     return translations[stored] ? stored : 'pt';
   }
 
+  function getTimeGreeting(languageKey = getLanguage(), date = new Date()) {
+    const hour = date.getHours();
+    const period = hour < 12 ? 'morning' : hour < 18 ? 'afternoon' : 'evening';
+    return timeGreetingTranslations[languageKey]?.[period] || timeGreetingTranslations.en[period];
+  }
+
   function t(key, fallback = key) {
     const languageKey = getLanguage();
     const selected = translations[languageKey] || translations.en;
@@ -1427,7 +1444,10 @@
     const pageMap = { overview: 0, mood: 1, relief: 2, focus: 3 };
     const pageTitle = document.getElementById('page-title');
     if (pageTitle) {
-      pageTitle.textContent = language.text[`page.${getCurrentPageName()}`] || language.text['page.overview'];
+      const currentPage = getCurrentPageName();
+      pageTitle.textContent = currentPage === 'overview'
+        ? getTimeGreeting(getLanguage())
+        : language.text[`page.${currentPage}`] || language.text['page.overview'];
     }
 
     const dateLabel = document.getElementById('date-label');
@@ -2098,7 +2118,9 @@
     const pageTitle = document.getElementById('page-title');
     const language = translations[getLanguage()] || translations.en;
     const key = `page.${view}`;
-    if (pageTitle) pageTitle.textContent = language.text[key] || language.text['page.overview'];
+    if (pageTitle) pageTitle.textContent = view === 'overview'
+      ? getTimeGreeting(getLanguage())
+      : language.text[key] || language.text['page.overview'];
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
