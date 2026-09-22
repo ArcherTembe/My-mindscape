@@ -59,3 +59,30 @@
             white-space: nowrap !important;
             text-align: center !important;
         }
+
+
+        /* Final Force Fix for Card Footer Text Overlap on Mobile */
+    #view-overview article button,
+    #share-affirmation,
+    div[role="button"] button,
+    button:has(svg),
+    .bg-sage + div button {
+        display: inline-flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 8px !important;
+        white-space: normal !important; /* Allows text to break onto a new line if cramped */
+        height: auto !important;
+        padding: 10px 16px !important;
+        text-align: center !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Ensure icons and text inside the button container wrap gracefully */
+    #view-overview article button * {
+        display: inline-block !important;
+        white-space: normal !important;
+    }
+    
