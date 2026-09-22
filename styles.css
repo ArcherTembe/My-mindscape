@@ -36,4 +36,3 @@
     @media (min-width: 768px) { #auth-first-name-wrap:not(.hidden), #auth-last-name-wrap:not(.hidden) { display: inline-block; width: calc(50% - .4rem); vertical-align: top; } #auth-first-name-wrap + #auth-last-name-wrap { margin-left: .65rem; } }
     @media (max-width: 767px) { #auth-modal { align-items: flex-start !important; padding: .5rem; } #auth-modal > div { width: 100%; max-height: calc(100dvh - 1rem); border-radius: 1.5rem; padding: 1rem; } #auth-modal h2 { font-size: clamp(1.75rem, 8vw, 1.9rem); line-height: 1.05; } #auth-modal form input, #auth-modal form select, #auth-modal form textarea, #auth-submit, #auth-switch { min-height: 2.9rem; } }
     @media (min-width: 768px) { .mobile-tabbar { display: none !important; } }
-

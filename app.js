@@ -34,7 +34,7 @@
     es: { morning: 'Buenos días, amigo.', afternoon: 'Buenas tardes, amigo.', evening: 'Buenas noches, amigo.' },
     fr: { morning: 'Bonjour, ami.', afternoon: 'Bon après-midi, ami.', evening: 'Bonsoir, ami.' },
     de: { morning: 'Guten Morgen, Freund.', afternoon: 'Guten Tag, Freund.', evening: 'Guten Abend, Freund.' },
-    ts: { morning: 'Avuxeni, munghana.', afternoon: 'Ndzenghunghu, munghana.', evening: 'Madyambu, munghana.' },
+    ts: { morning: 'Avuxeni, munghana.', afternoon: 'Ndzenghunghu, munghana.', evening: 'Aupelene, munghana.' },
     mkh: { morning: 'Mwau, mnzanga.', afternoon: 'Mwaswera bwanji, mnzanga.', evening: 'Madzulo abwino, mnzanga.' },
     sn: { morning: 'Mhoroi shamwari.', afternoon: 'Masikati akanaka, shamwari.', evening: 'Manheru akanaka, shamwari.' }
   };
@@ -1397,7 +1397,7 @@
         'U nga kota ku kota ku endlela hi mpfumawulo wu un’we.',
         'Ku khuluka i xiphemu xa ntirho.',
         'Ntsundzuko wa wena i wa nkoka.'
-        , 'Huma ka swona'
+        , 'Huma ka swona!'
       ],
       affirmationPrefix: 'Xikombiso',
       affirmationConnector: 'xa',
@@ -3007,9 +3007,10 @@
     const shareButton = document.createElement('button');
     shareButton.id = 'share-affirmation';
     shareButton.type = 'button';
-    shareButton.className = 'absolute bottom-7 right-7 rounded-full bg-white/15 px-3 py-2 text-xs font-bold text-white transition hover:bg-white/25 focus:outline-none focus:ring-2 focus:ring-white/60';
+    shareButton.className = 'shrink-0 rounded-full bg-white/15 px-3 py-2 text-xs font-bold text-white transition hover:bg-white/25 focus:outline-none focus:ring-2 focus:ring-white/60';
     shareButton.textContent = `↗ ${t('share.quote', 'Share quote')}`;
-    card.appendChild(shareButton);
+    const metaRow = card.querySelector('#affirmation-meta');
+    (metaRow || card).appendChild(shareButton);
     shareButton.addEventListener('click', shareAffirmation);
     const nextAffirmation = () => {
       const language = translations[getLanguage()] || translations.en;
